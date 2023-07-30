@@ -8,6 +8,8 @@ var level_time
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().paused = false
+	LevelCompleteScene.show_level_complete(false)
 	start_time = Time.get_ticks_msec()
 	level_time = Time.get_ticks_msec() - start_time
 	LevelCompleteScene.level_complete.connect(show_level_completed)

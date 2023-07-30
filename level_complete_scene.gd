@@ -19,6 +19,7 @@ func _ready():
 func show_level_complete(value: bool):
 	level_complete_container.visible = value
 	color_rect.visible = value
+	next_level_button.grab_focus()
 
 
 func _on_retry_button_pressed():
