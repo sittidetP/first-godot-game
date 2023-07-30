@@ -7,6 +7,7 @@ line_spacing = 10.0
 font_size = 50
 
 [node name="VictoryScene" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_lrv1a")
 
 [node name="ColorRect" type="ColorRect" parent="."]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b04tiqo7osd5c"]
+[gd_scene load_steps=8 format=3 uid="uid://b04tiqo7osd5c"]
 
 [ext_resource type="PackedScene" uid="uid://c7bnxy24u4xk6" path="res://player.tscn" id="1_75s70"]
 [ext_resource type="Script" path="res://world.gd" id="1_pvalg"]
 [ext_resource type="PackedScene" uid="uid://pk3xy3u8wo4p" path="res://level_tile_map.tscn" id="3_medtw"]
 [ext_resource type="PackedScene" uid="uid://bor3lrxj5c8si" path="res://level_complete_scene.tscn" id="4_5m0cf"]
+[ext_resource type="PackedScene" uid="uid://bb4628j6ptwkc" path="res://victory_scene.tscn" id="5_srvd0"]
 
 [sub_resource type="FontVariation" id="FontVariation_5oly8"]
 
@@ -36,3 +37,5 @@ label_settings = SubResource("LabelSettings_ck1lw")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="LevelCompleteScene" parent="CanvasLayer" instance=ExtResource("4_5m0cf")]
+
+[node name="VictoryScene" parent="CanvasLayer" instance=ExtResource("5_srvd0")]

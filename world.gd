@@ -2,12 +2,14 @@ extends Node
 
 @export var next_level_scene : PackedScene
 @onready var level_time_label = $LevelTimeCanvasLayer/CenterContainer/LevelTimeLabel
+@onready var victory_scene = $CanvasLayer/VictoryScene
 
 var start_time
 var level_time
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	victory_scene.visible = false
 	get_tree().paused = false
 	LevelCompleteScene.show_level_complete(false)
 	start_time = Time.get_ticks_msec()
@@ -22,8 +24,14 @@ func _process(delta):
 	level_time_label.text = str(level_time / 1000.0)
 
 func show_level_completed():
-	LevelCompleteScene.show_level_complete(true)
 	get_tree().paused = true
+	if (next_level_scene != null):
+		LevelCompleteScene.show_level_complete(true)
+	else :
+		victory_scene.back_to_main_menu_button.grab_focus()
+		victory_scene.visible = true
+	
+	
 
 func retry_level():
 	get_tree().paused = false
