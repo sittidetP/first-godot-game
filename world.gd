@@ -25,7 +25,7 @@ func show_level_completed():
 
 func retry_level():
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://world.tscn")
+	get_tree().change_scene_to_file(scene_file_path)
 	
 func go_to_next_level():
 	if(next_level_scene != null):
