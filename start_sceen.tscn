@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://08gpo5rbs8q2"]
+
+[ext_resource type="Script" path="res://start_sceen.gd" id="1_03g36"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vhkws"]
+font_size = 20
+
+[node name="StartSceen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_03g36")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="GameNameLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "My First Game"
+label_settings = SubResource("LabelSettings_vhkws")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Start Game"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
