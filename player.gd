@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var jump_amount = 2
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var animated_sprite_2d = $AnimatedSprite2D
 
 @onready var coyote_jump_timer = $CoyoteJumpTimer
 
@@ -40,9 +41,12 @@ func _process(delta):
 func _physics_process(delta):
 	add_gravity(delta)
 	
+	var direction = Input.get_axis("move_left", "move_right")
 	handle_jump()
 	
-	handle_move()
+	handle_move(direction)
+	
+	handle_animation(direction)
 
 	move_and_slide()
 	
@@ -61,10 +65,9 @@ func handle_jump():
 		current_jump_amount -= 1
 		
 
-func handle_move():
+func handle_move(direction: float):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -76,6 +79,17 @@ func reset_vars_when_on_floor():
 		use_jump_when_coyote = false
 		was_on_floor = true
 		current_jump_amount = jump_amount
+		
+func handle_animation(direction: float):
+	if direction != 0.0:
+		animated_sprite_2d.play("run")
+		var is_turn_left = direction < 0.0
+		animated_sprite_2d.flip_h = is_turn_left
+	else :
+		animated_sprite_2d.play("idle")
+		
+	if not is_on_floor():
+		animated_sprite_2d.play("jump")
 
 func _on_hazard_detector_area_entered(area):
 	global_position = start_position
